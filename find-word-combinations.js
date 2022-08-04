@@ -3,44 +3,33 @@ import fs from 'fs'
 // Use arrays so we can easily filter.
 const wordFile = JSON.parse(fs.readFileSync('./five-letter-words.json', 'utf8'))
 
-let availableWords = wordFile
-
 let combinations = new Set()
 
-;(() => {
-  for (let i = 0; i < 1; i++) {
-    const word = availableWords[0]
-  
-    let usedLetters = new Set(word.split(''))
-    
-    availableWords = getAvailableWordsWithoutUsedLetters(availableWords, usedLetters)
-    
-    let nextWord = availableWords[0]
-    usedLetters = getUsedLettersIncludingWord(usedLetters, nextWord)
-    
-    availableWords = getAvailableWordsWithoutUsedLetters(availableWords, usedLetters)
-    if (availableWords.length === 0) { return }
-    nextWord = availableWords[0]
-    usedLetters = getUsedLettersIncludingWord(usedLetters, nextWord)
-   
-    console.log(usedLetters)
-  
-    availableWords = getAvailableWordsWithoutUsedLetters(availableWords, usedLetters)
-    if (availableWords.length === 0) { return }
-    nextWord = availableWords[0]
-    usedLetters = getUsedLettersIncludingWord(usedLetters, nextWord)
-  
-    console.log(usedLetters)
-  
-    availableWords = getAvailableWordsWithoutUsedLetters(availableWords, usedLetters)
-    if (availableWords.length === 0) { return }
-    nextWord = availableWords[0]
-    usedLetters = getUsedLettersIncludingWord(usedLetters, nextWord)
-  
-    console.log(usedLetters)
-  }
-})()
+searchForWordsUsingDifferentLetters(new Set(), wordFile)
 
+// combinations.forEach(combination => {
+//   console.log('final combination: ', printWords(combination))
+// })
+
+function searchForWordsUsingDifferentLetters(previouslyUsedLetters, availableWords) {
+  availableWords.forEach(word => {
+    const usedLetters = getUsedLettersIncludingWord(previouslyUsedLetters, word)
+
+    if (usedLetters.size === 25) {
+      combinations.add(usedLetters)
+
+      console.log(getWordsString(usedLetters))
+
+      return
+    }
+
+    const remainingAvailableWords = getAvailableWordsWithoutUsedLetters(availableWords, usedLetters)
+
+    if (remainingAvailableWords.length === 0) { return }
+
+    searchForWordsUsingDifferentLetters(usedLetters, remainingAvailableWords)
+  })
+}
 
 function getAvailableWordsWithoutUsedLetters(availableWords, usedLetters) {
   return availableWords.filter((word) => {
@@ -55,3 +44,8 @@ function getUsedLettersIncludingWord(usedLetters, word) {
   return new Set([...usedLetters, ...word.split('')])
 }
 
+function getWordsString(usedLetters) {
+  return [...usedLetters]
+    .map((letter, index) => index > 4 && index % 5 === 0 ? ` ${letter}` : letter)
+    .join('')
+}
