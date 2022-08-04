@@ -1,5 +1,5 @@
 {
   "name": "words-using-all-letters",
-  "main": "index.js",
+  "main": "five-letter-words.js",
   "type": "module"
 }
