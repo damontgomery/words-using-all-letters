@@ -1,0 +1,5 @@
+{
+  "name": "words-using-all-letters",
+  "main": "index.js",
+  "type": "module"
+}
