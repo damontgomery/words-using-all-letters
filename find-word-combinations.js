@@ -7,9 +7,9 @@ let combinations = new Set()
 
 searchForWordsUsingDifferentLetters(new Set(), wordFile)
 
-// combinations.forEach(combination => {
-//   console.log('final combination: ', printWords(combination))
-// })
+combinations.forEach(combination => {
+  console.log('combination: ', printWords(combination))
+})
 
 function searchForWordsUsingDifferentLetters(previouslyUsedLetters, availableWords) {
   availableWords.forEach(word => {
