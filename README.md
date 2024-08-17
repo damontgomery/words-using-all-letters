@@ -9,3 +9,7 @@ nvm use
 npm install
 time npm run find-combinations > output/combinations-using-maps
 ```
+
+Takes ~25 minutes to run on my old laptop.
+
+The solution was described by some of the videos by Matt Parker. Basically, if we represent the letter in a word using binary, we can very quickly check if new words include the same letters using bitwise operations. The previous attempt I went with used Set objects to store the letters.

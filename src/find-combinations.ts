@@ -65,5 +65,5 @@ searchForWordsUsingDifferentLetters({
 combinations.forEach(combination => {
   const combinationWordMaps = JSON.parse(combination)
   console.log('combination (map): ', getMapStringFromCombination(combinationWordMaps))
-  console.log('combination: (words', getWordStringFromCombination(combinationWordMaps))
+  console.log('combination: (words)', getWordStringFromCombination(combinationWordMaps))
 })
