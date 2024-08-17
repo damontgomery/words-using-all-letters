@@ -23,7 +23,7 @@ const searchForWordsUsingDifferentLetters = ({
   usedWordMaps: WordMap[],
   availableWordMaps: WordMap[]
 }): void => {
-  availableWordMaps.forEach(wordMap => {
+  availableWordMaps.forEach((wordMap, index) => {
     const usedLettersIncludingNewWord = usedLettersMap | wordMap
 
     const newCombination = [...usedWordMaps, wordMap]
@@ -43,9 +43,12 @@ const searchForWordsUsingDifferentLetters = ({
       return
     }
 
-    const remainingAvailableWordMaps = availableWordMaps.filter(
-      (wordMap) => (wordMap & usedLettersIncludingNewWord) === 0
-    )
+    // We should be able to trim any word "before" the current word we are checking since we already checked those combinations.
+    const remainingAvailableWordMaps = availableWordMaps
+      .slice(index + 1)
+      .filter(
+        (wordMap) => (wordMap & usedLettersIncludingNewWord) === 0
+      )
 
     if (remainingAvailableWordMaps.length === 0) { return }
 
@@ -62,9 +65,3 @@ searchForWordsUsingDifferentLetters({
   usedWordMaps: [],
   availableWordMaps: dictionaryWordMaps,
 })
-
-// combinations.forEach(combination => {
-//   const combinationWordMaps = JSON.parse(combination)
-//   console.log('combination (map): ', getMapStringFromCombination(combinationWordMaps))
-//   console.log('combination (words):', getWordStringFromCombination(combinationWordMaps))
-// })
