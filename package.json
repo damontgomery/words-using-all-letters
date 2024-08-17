@@ -1,5 +1,12 @@
 {
   "name": "words-using-all-letters",
   "main": "five-letter-words.js",
-  "type": "module"
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Calculate groups of words that use as many letters of the alphabet as possible",
+  "scripts": {
+    "watch": "tsc -w",
+    "buid": "tsc",
+    "run": "node dist/five-letter-words.js"
+  }
 }
