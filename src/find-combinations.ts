@@ -2,15 +2,14 @@ import fs from 'fs'
 import { MapToWordsMap } from './create-dictionary.js'
 import { getNumberOfOnesInMap, mapToString, WordMap } from './binaryMap.js'
 
-// Use arrays so we can easily filter.
 const wordFile = JSON.parse(fs.readFileSync('./data/dictionary.json', 'utf8')) as [number, string[]][]
 
 const dictionaryMapToWordsMap: MapToWordsMap =  new Map (wordFile)
 const dictionaryWordMaps: WordMap[] = Array.from(dictionaryMapToWordsMap.keys())
 
+// We stringify the combination to use it as a key in a Set so that we can check if we have already found it already.
 const combinations: Set<string> = new Set()
 
-// @todo print the actual words...
 const getWordStringFromCombination = (wordMaps: WordMap[]) => wordMaps.map(wordMap => JSON.stringify(dictionaryMapToWordsMap.get(wordMap))).join(' ')
 
 const getMapStringFromCombination = (wordMaps: WordMap[]) => wordMaps.map(wordMap => mapToString(wordMap)).join(' ')
