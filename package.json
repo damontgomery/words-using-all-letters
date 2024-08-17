@@ -5,8 +5,13 @@
   "version": "1.0.0",
   "description": "Calculate groups of words that use as many letters of the alphabet as possible",
   "scripts": {
-    "watch": "tsc -w",
+    "watch": "tsc --watch",
     "buid": "tsc",
-    "run": "node dist/five-letter-words.js"
+    "find-combinations": "node dist/find-combinations.js",
+    "create-dictionary" : "node dist/create-dictionary.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.4.0",
+    "typescript": "^5.5.4"
   }
 }
