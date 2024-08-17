@@ -36,6 +36,7 @@ const searchForWordsUsingDifferentLetters = ({
 
       combinations.add(sortedCombinationString)
 
+      // Print as we go so we can see the results.
       console.log('combination (map): ', getMapStringFromCombination(sortedCombination))
       console.log('combination (words): ', getWordStringFromCombination(sortedCombination))
 
@@ -62,8 +63,8 @@ searchForWordsUsingDifferentLetters({
   availableWordMaps: dictionaryWordMaps,
 })
 
-combinations.forEach(combination => {
-  const combinationWordMaps = JSON.parse(combination)
-  console.log('combination (map): ', getMapStringFromCombination(combinationWordMaps))
-  console.log('combination: (words)', getWordStringFromCombination(combinationWordMaps))
-})
+// combinations.forEach(combination => {
+//   const combinationWordMaps = JSON.parse(combination)
+//   console.log('combination (map): ', getMapStringFromCombination(combinationWordMaps))
+//   console.log('combination (words):', getWordStringFromCombination(combinationWordMaps))
+// })
