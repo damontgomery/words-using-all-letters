@@ -5,6 +5,8 @@ const getWordStringFromCombination = (wordMaps: WordMap[]) => wordMaps.map(wordM
 
 const getMapStringFromCombination = (wordMaps: WordMap[]) => wordMaps.map(wordMap => mapToString(wordMap)).join(' ')
 
+// const combinations = new Set<string>()
+
 export const searchForWordsUsingDifferentLetters = ({
   usedLettersMap,
   usedWordMaps,
@@ -23,8 +25,9 @@ export const searchForWordsUsingDifferentLetters = ({
   // If we are doing multithreading, we want to allow only traversing a part of the space.
   for (let index = start ?? 0; index < (end ?? availableWordMaps.length); index++) {
     const wordMap = availableWordMaps[index]
-    const usedLettersIncludingNewWord = usedLettersMap | wordMap
 
+    const usedLettersIncludingNewWord = usedLettersMap | wordMap
+    
     const newCombination = [...usedWordMaps, wordMap]
 
     if (getNumberOfOnesInMap(usedLettersIncludingNewWord) === 25) {
@@ -34,6 +37,10 @@ export const searchForWordsUsingDifferentLetters = ({
       if (combinations.has(sortedCombinationString)) { return }
 
       combinations.add(sortedCombinationString)
+
+      // @todo remove debug lines.
+      console.log('process ID:', process.pid)
+      console.log('combinations size:', combinations.size)
 
       // Print as we go so we can see the results.
       console.log('combination (map): ', getMapStringFromCombination(sortedCombination))
