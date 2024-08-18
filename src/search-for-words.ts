@@ -31,7 +31,7 @@ export const searchForWordsUsingDifferentLetters = ({
       const sortedCombination = newCombination.sort()
       const sortedCombinationString = JSON.stringify(sortedCombination)
       
-      if (combinations.has(sortedCombinationString)) { return }
+      if (combinations.has(sortedCombinationString)) { continue }
 
       combinations.add(sortedCombinationString)
 
